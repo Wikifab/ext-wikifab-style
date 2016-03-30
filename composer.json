@@ -1,0 +1,6 @@
+{
+    "name": "wikifab/wfext-style",
+    "type": "mediawiki-extension",
+    "require": {
+    }
+}
