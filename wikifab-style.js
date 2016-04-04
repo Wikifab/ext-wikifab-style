@@ -17,6 +17,27 @@ $( document ).ready(function() {
 		    $(".saving-menu").css("top",$movedPosition);
 		}
 	});
+    
+    
+    // add no-image-yet if not image yet on tutoriel form
+    
+    $( '.form-picture' ).each( function () {
+
+    	var picDetails = $(this).parents('.col-pic-detail');
+    	
+    	if (! picDetails.find('.sfImagePreviewWrapper').html()) {
+    		picDetails.find('.sfImagePreviewWrapper').append('<img src="http://files.wikifab.org/8/89/No-image-yet.jpg">');
+    	}
+    	
+    	var picStep = $(this).parents('.col-pic-step');
+    	
+    	if (! picStep.find('.sfImagePreviewWrapper').html()) {
+    		picStep.find('.sfImagePreviewWrapper').append('<img src="http://files.wikifab.org/8/89/No-image-yet.jpg">');
+    	}
+    	
+	} );
+    
+    
 });
 
 
