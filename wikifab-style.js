@@ -20,6 +20,7 @@ $( document ).ready(function() {
     
     
     // add no-image-yet if not image yet on tutoriel form
+	// super com
     
     $( '.form-picture' ).each( function () {
 
