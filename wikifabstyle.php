@@ -29,3 +29,22 @@ function PersonalUrlsWikifabCustom( &$personal_urls, &$title, $this  ) {
 	}
 	//var_dump($personal_urls);
 }
+
+$wgWikifabStyleForceUpdate = true;
+
+// hook to launch synchronous update properties of new pages
+// this has been added because if not, after create new page,
+// the page has not instantly his properties, and so the forms links (action=formedit) are not setted
+$wgHooks['ArticleEditUpdates'][] = 'wfExtStyleArticleEditUpdates';
+function wfExtStyleArticleEditUpdates( WikiPage $wikipage, $editInfo, $changed  ) {
+	global $wgWikifabStyleForceUpdate;
+	if ($wgWikifabStyleForceUpdate) {
+		$title = $wikipage->getTitle();
+		$output = $editInfo->output;
+
+		if( ! $editInfo->oldContent ) {
+			$linksUpdate = new LinksUpdate( $title, $output, $recursive = false );
+			$linksUpdate->doUpdate();
+		}
+	}
+}
