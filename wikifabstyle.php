@@ -11,7 +11,7 @@ $wgResourceModules['ext.Wikifab.js'] = array(
 	),
 	'position' => 'bottom',
 	'localBasePath' => __DIR__ . '',
-	'remoteExtPath' => 'WfExtensions/WikifabStyle',
+	'remoteExtPath' => 'WfextStyle',
 );
 
 // Specify the function that will change the user menu.
