@@ -27,7 +27,12 @@ function PersonalUrlsWikifabCustom( &$personal_urls, &$title, $this  ) {
 	if(isset($personal_urls['anontalk'])) {
 		unset($personal_urls['anontalk']);
 	}
-	//var_dump($personal_urls);
+	if(isset($personal_urls['watchlist'])) {
+		unset($personal_urls['watchlist']);
+	}
+	if(isset($personal_urls['mycontris'])) {
+		unset($personal_urls['mycontris']);
+	}
 }
 
 $wgWikifabStyleForceUpdate = true;
