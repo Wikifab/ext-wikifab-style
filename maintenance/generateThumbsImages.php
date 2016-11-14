@@ -39,6 +39,7 @@ class GenerateThumbsImages extends Maintenance {
 		$this->addOption( 'maxThumbs', 'Maximum number of thumbs to generat', false, true );
 		$this->addOption( 'maxTime', 'Maximum amount of wall-clock time', false, true );
 		$this->addOption( 'startName', 'imageNameToStart', false, true );
+		$this->addOption( 'lastMin', 'number of min for select recents pictures only ', false, true );
 	}
 
 	public function execute() {
@@ -61,6 +62,7 @@ class GenerateThumbsImages extends Maintenance {
 
 		$this->mBatchSize = 20;
 		$lastName = $this->getOption( 'startName', '' );
+		$lastMin = $this->getOption( 'lastMin', '' );
 
 		$conds = [];
 
@@ -70,6 +72,12 @@ class GenerateThumbsImages extends Maintenance {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		//$repo->enumFiles( ['GenerateThumbsImages', 'generateThumbsImagesCallBack'] ) ;
 		$dbw = $repo->getMasterDB ();
+
+		if ($lastMin) {
+			$lastMinTimestamp = date("YmdH0000", strtotime("-" . $lastMin . " minutes"));
+			$this->output( "timestamp : $lastMinTimestamp \n" );
+			$conds[] = 'img_timestamp >= ' .$lastMinTimestamp;
+		}
 
 		$totalCount = $dbw->estimateRowCount('image', $vars = '*', $conds);
 		$this->output( "Nb image to check : $totalCount \n" );
