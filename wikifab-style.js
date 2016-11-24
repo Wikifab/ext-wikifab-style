@@ -12,9 +12,11 @@ $( document ).ready(function() {
 	    if($originalPosition < $movedPosition) {
 		    $(".saving-menu").css("position",'relative');
 		    $(".saving-menu").css("top","");
+		    $(".saving-menu").css("margin-left",0);
 		} else {
 		    $(".saving-menu").css("position",'fixed');
 		    $(".saving-menu").css("top",$movedPosition);
+		    $(".saving-menu").css("margin-left",$("body").css("margin-left"));
 		}
 	});
 });
