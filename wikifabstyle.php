@@ -8,6 +8,7 @@ $wgResourceModules['ext.Wikifab.js'] = array(
 	'messages' => array(
 	),
 	'dependencies' => array(
+			'jquery.ui.core'
 	),
 	'position' => 'bottom',
 	'localBasePath' => __DIR__ . '',
