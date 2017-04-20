@@ -24,13 +24,13 @@ function subst() {
     </head>
     <body id="pdf-footer" onload="subst()" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;">
             <footer>
-            	<div style="width:100%;border-bottom:1px solid #eeeeee;margin-bottom:0.5em;"></div>
-            	<div style="display:inline-block;width:50%;text-align:left;">
-            		wikifab.org
-            	</div>
-            	<div style="display:inline-block;width:50%;text-align:right;">
-            		Page <span class="page"></span> / <span class="topage"></span>
-            	</div>
+           		<div style="width:100%;border-bottom:1px solid #eeeeee;margin-bottom:0.5em;"></div>
+            	<table style="width:100%">
+	            	<tr>
+	            		<td>wikifab.org</td>
+	            		<td style="text-align:right;">Page <span class="page"></span> / <span class="topage"></span></td>
+	            	</tr>
+	            </table>
             </footer>
     </body>
 </html>
