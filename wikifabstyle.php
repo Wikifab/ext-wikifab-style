@@ -3,7 +3,7 @@
 $wgMessagesDirs['WfExtStyle'] = __DIR__ . "/i18n";
 
 $wgResourceModules['ext.Wikifab.js'] = array(
-	'scripts' => 'wikifab-style.js',
+	'scripts' => ['wikifab-style.js','wikifab-style-embedvideo.js'],
 	'styles' => array(),
 	'messages' => array(
 	),
@@ -11,6 +11,12 @@ $wgResourceModules['ext.Wikifab.js'] = array(
 			'jquery.ui.core'
 	),
 	'position' => 'bottom',
+	'localBasePath' => __DIR__ . '',
+	'remoteExtPath' => 'WfextStyle',
+);
+$wgResourceModules['ext.Wikifab.css'] = array(
+	'styles' => array('wikifab-style-embedvideo.css'),
+	'position' => 'top',
 	'localBasePath' => __DIR__ . '',
 	'remoteExtPath' => 'WfextStyle',
 );
