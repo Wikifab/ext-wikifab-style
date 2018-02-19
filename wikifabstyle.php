@@ -17,7 +17,7 @@ $wgResourceModules['ext.Wikifab.js'] = array(
 
 // Specify the function that will change the user menu.
 $wgHooks['PersonalUrls'][] = 'PersonalUrlsWikifabCustom';
-function PersonalUrlsWikifabCustom( &$personal_urls, &$title, $this  ) {
+function PersonalUrlsWikifabCustom( &$personal_urls, &$title, $that  ) {
 	unset($personal_urls['mytalk']);
 	if(isset($personal_urls['userpage']['text'])) {
 		$personal_urls['userpage']['text'] = wfMessage( 'wfextstyle-my_profil');
