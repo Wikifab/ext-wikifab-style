@@ -1,4 +1,5 @@
 
+/*
 $( document ).ready(function() {
     $(window).scroll(function(){
 		// en haut : 
@@ -19,7 +20,7 @@ $( document ).ready(function() {
 		    $(".saving-menu").css("margin-left",$("body").css("margin-left"));
 		}
 	});
-});
+});*/
 
 
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
