@@ -22,6 +22,11 @@ $( document ).ready(function() {
 	});
 });*/
 
+$( document ).ready(function() {
+	$('.file-3D').wrap("<div class='file-3D'></div>");
+	$('<span>').addClass('stl-file').prependTo('div.file-3D');
+});
+
 
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
   var $target = $(this).next(".collapse");

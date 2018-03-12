@@ -1,0 +1,24 @@
+div.file-3D{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}	
+
+div.file-3D .stl-file{
+	background-image: url(images/msu-3D.png);
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	padding: 5px;
+	background-position: 0 0;
+}	
+
+.carousel-thumb .stl-file{
+	background-size: 38px;
+}
+
+.item .stl-file{
+	background-size: auto;
+}

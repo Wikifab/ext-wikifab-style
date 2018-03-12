@@ -15,6 +15,14 @@ $wgResourceModules['ext.Wikifab.js'] = array(
 	'remoteExtPath' => 'WfextStyle',
 );
 
+$wgResourceModules['ext.Wikifab.css'] = array(
+	'styles' => array(
+		'wikifab-style.css',
+	),
+	'localBasePath' => __DIR__,
+	'remoteExtPath' => 'WfextStyle',
+);
+
 // Specify the function that will change the user menu.
 $wgHooks['PersonalUrls'][] = 'PersonalUrlsWikifabCustom';
 function PersonalUrlsWikifabCustom( &$personal_urls, &$title, $that  ) {
@@ -53,4 +61,20 @@ function wfExtStyleArticleEditUpdates( WikiPage $wikipage, $editInfo, $changed  
 			$linksUpdate->doUpdate();
 		}
 	}
+}
+
+
+$wgHooks['ParserMakeImageParams'][] = 'onParserMakeImageParams';
+function onParserMakeImageParams( $title, $file, &$params, $parser ) {
+	if(method_exists($file, 'getMimeType')){
+		if($file->getMimeType() == 'application/sla'){
+			$params['frame']['class'] = 'file-3D';
+		}
+	}
+	return true;
+}
+
+$wgHooks['BeforePageDisplay'][] = 'onBeforePageDisplay';
+function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
+		$out->addModuleStyles('ext.Wikifab.css');
 }
