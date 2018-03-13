@@ -67,8 +67,13 @@ function wfExtStyleArticleEditUpdates( WikiPage $wikipage, $editInfo, $changed  
 $wgHooks['ParserMakeImageParams'][] = 'onParserMakeImageParams';
 function onParserMakeImageParams( $title, $file, &$params, $parser ) {
 	if(method_exists($file, 'getMimeType')){
-		if($file->getMimeType() == 'application/sla'){
-			$params['frame']['class'] = 'file-3D';
+		switch ($file->getMimeType()) {
+			case 'application/sla':
+				$params['frame']['class'] = 'file-3D';
+				break;
+			case 'video/mp4':
+				$params['frame']['class'] = 'videofile';
+				break;
 		}
 	}
 	return true;

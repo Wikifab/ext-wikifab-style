@@ -1,4 +1,5 @@
-div.file-3D{
+div.file-3D,
+div.videofile{
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -13,6 +14,17 @@ div.file-3D .stl-file{
 	position: absolute;
 	padding: 5px;
 	background-position: 0 0;
+}
+
+div.videofile .mp4-file{
+	background-image: url(images/msu-play-verysmall.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	padding: 5px;
 }	
 
 .carousel-thumb .stl-file{
@@ -21,4 +33,8 @@ div.file-3D .stl-file{
 
 .item .stl-file{
 	background-size: auto;
+}
+
+.item .mp4-file{
+	display: none;
 }

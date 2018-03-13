@@ -25,6 +25,9 @@ $( document ).ready(function() {
 $( document ).ready(function() {
 	$('.file-3D').wrap("<div class='file-3D'></div>");
 	$('<span>').addClass('stl-file').prependTo('div.file-3D');
+
+	$('.videofile').wrap("<div class='videofile'></div>");
+	$('<span>').addClass('mp4-file').prependTo('div.videofile');
 });
 
 
