@@ -12,7 +12,7 @@ div.file-3D .stl-file{
 	height: 100%;
 	display: block;
 	position: absolute;
-	padding: 5px;
+	margin: 5px;
 	background-position: 0 0;
 }
 
