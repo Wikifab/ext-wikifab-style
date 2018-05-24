@@ -22,6 +22,24 @@ $( document ).ready(function() {
 	});
 });*/
 
+$(function() {
+    /**
+    * Smooth scrolling to page anchor on click
+    **/
+    $(".smooth-scroll a[href*='#']:not([href='#'])").click(function() {
+        if (
+            location.hostname == this.hostname
+            && this.pathname.replace(/^\//,"") == location.pathname.replace(/^\//,"")
+        ) {
+            var anchor = $(this.hash);
+            anchor = anchor.length ? anchor : $("[name=" + this.hash.slice(1) +"]");
+            if ( anchor.length ) {
+                $("html, body").animate( { scrollTop: anchor.offset().top }, 800);
+            }
+        }
+    });
+});
+
 
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
   var $target = $(this).next(".collapse");
