@@ -30,6 +30,29 @@ $( document ).ready(function() {
 	$('<span>').addClass('mp4-file').prependTo('div.videofile');
 });
 
+// BACK TO TOP
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("backToTop").style.display = "block";
+    } else {
+        document.getElementById("backToTop").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+	$('body, html').stop().animate({scrollTop:0}, 500, 'swing', function() { 
+	});
+} 
+
+// BACK TO TOP - END
+
+// SMOOTH SCROLLING PAGE ANCHOR
+
 $(function() {
     /**
     * Smooth scrolling to page anchor on click
@@ -47,6 +70,102 @@ $(function() {
         }
     });
 });
+
+// SMOOTH SCROLLING PAGE ANCHOR - END
+
+// LOGIN POPUP ON CLICK ON EDIT BUTTON (Not logged in)
+
+(function() {
+	$( document ).ready(function() {
+		$('#ca-edit a, #ca-formedit a').click(function(e){
+			if (! mw.config.get('wgUserId')) {
+				e.preventDefault();
+				displayModal();
+				return;
+			}
+		});
+	});
+
+	function displayModal() {
+		$( "#connectionRequiredModal" ).modal();
+	}
+})();
+	
+// LOGIN POPUP ON CLICK ON EDIT BUTTON - END
+
+// STEP NUMBER ON TUTORIALS FORM
+
+(function() {
+
+	function refreshStepNumber(){
+		var multipleTemplateInstances = $('.multipleTemplateInstance');
+
+		multipleTemplateInstances.each(function (key){
+			var multipleTemplateInstance = this;
+    		$('.step-number', multipleTemplateInstance).text((multipleTemplateInstances.index(multipleTemplateInstance) + 1));
+		});
+	}
+
+	function onLoad(){
+		var multipleTemplateInstances = $('.multipleTemplateInstance');
+
+		multipleTemplateInstances.each(function (key){
+			var multipleTemplateInstance = this;
+			var wfFormTutoStepInstructions = $('.WfFormTutoStepInstructions', multipleTemplateInstance).first();
+			wfFormTutoStepInstructions.append("<span class='step-number'>" + (multipleTemplateInstances.index(multipleTemplateInstance) + 1) + "</span>");
+		});
+	}
+
+	function onNodeAdded($node){
+		var wfFormTutoStepInstructions = $('.WfFormTutoStepInstructions', $node).first();
+		var multipleTemplateInstances = $('.multipleTemplateInstance');
+		wfFormTutoStepInstructions.append("<span class='step-number'></span>");
+
+		refreshStepNumber();
+	}
+
+	function onNodeRemoved($node){
+		refreshStepNumber();
+	}
+
+	//see MutationObserver 
+	//https://developer.mozilla.org/fr/docs/Web/API/MutationObserver
+	function setObserver(){
+		//it is assumed that there's only one element with a multipleTemplateList class
+		var targetNode = document.getElementsByClassName('multipleTemplate-tutostep')[0].getElementsByClassName('multipleTemplateList')[0];
+
+		if(targetNode){
+			//what we observe
+			var config = { childList: true };
+
+			var callback = function(mutationsList) {
+			    for(var mutation of mutationsList) {
+			        if (mutation.type == 'childList') {
+			        	//it is assumed that only one element is added at a time
+			        	if(mutation.addedNodes[0]){
+							onNodeAdded(mutation.addedNodes[0]);
+			        	}
+			        	if(mutation.removedNodes[0]){
+			        		onNodeRemoved(mutation.removedNodes[0]);
+			        	}
+			        }
+			    }
+			};
+
+			var observer = new MutationObserver(callback);
+
+			observer.observe(targetNode, config);
+		}
+	}
+
+	$( document ).ready(function() {
+		onLoad();
+		setObserver();
+	});
+
+})();
+
+// STEP NUMBER ON TUTORIALS FORM - END
 
 
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
