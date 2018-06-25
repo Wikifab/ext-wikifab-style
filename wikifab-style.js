@@ -51,6 +51,8 @@ function topFunction() {
 
 // BACK TO TOP - END
 
+// SMOOTH SCROLLING PAGE ANCHOR
+
 $(function() {
     /**
     * Smooth scrolling to page anchor on click
@@ -68,6 +70,28 @@ $(function() {
         }
     });
 });
+
+// SMOOTH SCROLLING PAGE ANCHOR - END
+
+// LOGIN POPUP ON CLICK ON EDIT BUTTON (Not logged in)
+
+(function() {
+	$( document ).ready(function() {
+		$('#ca-edit a, #ca-formedit a').click(function(e){
+			if (! mw.config.get('wgUserId')) {
+				e.preventDefault();
+				displayModal();
+				return;
+			}
+		});
+	});
+
+	function displayModal() {
+		$( "#connectionRequiredModal" ).modal();
+	}
+})();
+	
+// LOGIN POPUP ON CLICK ON EDIT BUTTON - END
 
 
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
