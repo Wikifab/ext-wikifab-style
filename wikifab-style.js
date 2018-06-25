@@ -30,6 +30,30 @@ $( document ).ready(function() {
 	$('<span>').addClass('mp4-file').prependTo('div.videofile');
 });
 
+// BACK TO TOP
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("backToTop").style.display = "block";
+    } else {
+        document.getElementById("backToTop").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+	$('body, html').stop().animate({scrollTop:0}, 500, 'swing', function() { 
+	});
+} 
+
+// BACK TO TOP - END
+
+
+// SMOOTH SCROLLING PAGE ANCHOR
+
 $(function() {
     /**
     * Smooth scrolling to page anchor on click
@@ -47,6 +71,28 @@ $(function() {
         }
     });
 });
+
+// SMOOTH SCROLLING PAGE ANCHOR - END
+
+// LOGIN POPUP ON CLICK ON EDIT BUTTON (Not logged in)
+
+(function() {
+	$( document ).ready(function() {
+		$('#ca-edit a, #ca-formedit a').click(function(e){
+			if (! mw.config.get('wgUserId')) {
+				e.preventDefault();
+				displayModal();
+				return;
+			}
+		});
+	});
+
+	function displayModal() {
+		$( "#connectionRequiredModal" ).modal();
+	}
+})();
+	
+// LOGIN POPUP ON CLICK ON EDIT BUTTON - END
 
 
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
