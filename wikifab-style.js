@@ -102,7 +102,7 @@ $(function() {
 
 		multipleTemplateInstances.each(function (key){
 			var multipleTemplateInstance = this;
-    		$('.step-number', multipleTemplateInstance).text((multipleTemplateInstances.index(multipleTemplateInstance) + 1));
+    		$('.step-number', multipleTemplateInstance).text(mw.msg('wfextstyle-form-step-label') + " " + (multipleTemplateInstances.index(multipleTemplateInstance) + 1));
 		});
 	}
 
@@ -112,14 +112,14 @@ $(function() {
 		multipleTemplateInstances.each(function (key){
 			var multipleTemplateInstance = this;
 			var wfFormTutoStepInstructions = $('.WfFormTutoStepInstructions', multipleTemplateInstance).first();
-			wfFormTutoStepInstructions.append("<span class='step-number'>" + (multipleTemplateInstances.index(multipleTemplateInstance) + 1) + "</span>");
+			wfFormTutoStepInstructions.prepend("<div class='step-number'> " + mw.msg('wfextstyle-form-step-label') + " " + (multipleTemplateInstances.index(multipleTemplateInstance) + 1) + "</div>");
 		});
 	}
 
 	function onNodeAdded($node){
 		var wfFormTutoStepInstructions = $('.WfFormTutoStepInstructions', $node).first();
 		var multipleTemplateInstances = $('.multipleTemplateInstance');
-		wfFormTutoStepInstructions.append("<span class='step-number'></span>");
+		wfFormTutoStepInstructions.prepend("<div class='step-number'></div>");
 
 		refreshStepNumber();
 	}
