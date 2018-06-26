@@ -132,29 +132,32 @@ $(function() {
 	//https://developer.mozilla.org/fr/docs/Web/API/MutationObserver
 	function setObserver(){
 		//it is assumed that there's only one element with a multipleTemplateList class
-		var targetNode = document.getElementsByClassName('multipleTemplate-tutostep')[0].getElementsByClassName('multipleTemplateList')[0];
+		var e = document.getElementsByClassName('multipleTemplate-tutostep')[0];
+		if(e){
+			var targetNode = e.getElementsByClassName('multipleTemplateList')[0];
 
-		if(targetNode){
-			//what we observe
-			var config = { childList: true };
+			if(targetNode){
+				//what we observe
+				var config = { childList: true };
 
-			var callback = function(mutationsList) {
-			    for(var mutation of mutationsList) {
-			        if (mutation.type == 'childList') {
-			        	//it is assumed that only one element is added at a time
-			        	if(mutation.addedNodes[0]){
-							onNodeAdded(mutation.addedNodes[0]);
-			        	}
-			        	if(mutation.removedNodes[0]){
-			        		onNodeRemoved(mutation.removedNodes[0]);
-			        	}
-			        }
-			    }
-			};
+				var callback = function(mutationsList) {
+				    for(var mutation of mutationsList) {
+				        if (mutation.type == 'childList') {
+				        	//it is assumed that only one element is added at a time
+				        	if(mutation.addedNodes[0]){
+								onNodeAdded(mutation.addedNodes[0]);
+				        	}
+				        	if(mutation.removedNodes[0]){
+				        		onNodeRemoved(mutation.removedNodes[0]);
+				        	}
+				        }
+				    }
+				};
 
-			var observer = new MutationObserver(callback);
+				var observer = new MutationObserver(callback);
 
-			observer.observe(targetNode, config);
+				observer.observe(targetNode, config);
+			}
 		}
 	}
 
