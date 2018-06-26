@@ -3,5 +3,6 @@
 		"authors": ["Pierre Boutet"]
 	},
 	"wfextstyle-desc": "Style customization for wikifab",
-	"wfextstyle-my_profil": "My Profile"
+	"wfextstyle-my_profil": "My Profile",
+	"wfextstyle-form-step-label": "Step"
 }
