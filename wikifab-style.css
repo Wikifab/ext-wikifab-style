@@ -39,7 +39,7 @@ div.videofile .mp4-file{
 	display: none;
 }
 
-.step-number-container .step-number {
+.WfFormTutoStepInstructions .step-number {
 	width: auto;
     background: #f1f1f1;
     padding: 9px;
@@ -53,10 +53,10 @@ div.videofile .mp4-file{
     border-radius: 3px 0 0 3px;
 }
 
-.step-number-container .step-title-numeroted {
+.WfFormTutoStepInstructions .step-title-numeroted {
 	overflow: hidden;
 }
 
-#pfForm .step-number-container .step-title-numeroted .createboxInput.form-step-title {
+#pfForm .WfFormTutoStepInstructions .step-title-numeroted .createboxInput.form-step-title {
 	border-radius: 0 3px 3px 0;
 }
