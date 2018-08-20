@@ -62,3 +62,24 @@ div.videofile .mp4-file{
 }
 
 /* BACK TO TOP - END */
+.WfFormTutoStepInstructions .step-number {
+	width: auto;
+    background: #f1f1f1;
+    padding: 9px;
+    height: auto;
+    float: left;
+    color: #aaa;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    border: 1px solid #ddd;
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.WfFormTutoStepInstructions .step-title-numeroted {
+	overflow: hidden;
+}
+
+#pfForm .WfFormTutoStepInstructions .step-title-numeroted .createboxInput.form-step-title {
+	border-radius: 0 3px 3px 0;
+}
