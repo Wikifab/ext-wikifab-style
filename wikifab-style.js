@@ -36,7 +36,7 @@ $( document ).ready(function() {
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-	var backToTop = document.getElementById("backToTop");
+    var backToTop = document.getElementById("backToTop");
     if (backToTop){
     	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 	        backToTop.style.display = "block";
@@ -53,7 +53,6 @@ function topFunction() {
 } 
 
 // BACK TO TOP - END
-
 
 // SMOOTH SCROLLING PAGE ANCHOR
 
@@ -97,6 +96,82 @@ $(function() {
 	
 // LOGIN POPUP ON CLICK ON EDIT BUTTON - END
 
+// STEP NUMBER ON TUTORIALS FORM
+
+(function() {
+
+	function refreshStepNumber(){
+		var multipleTemplateInstances = $('.multipleTemplateInstance');
+
+		multipleTemplateInstances.each(function (key){
+			var multipleTemplateInstance = this;
+    		$('.step-number', multipleTemplateInstance).text(mw.msg('wfextstyle-form-step-label') + " " + (multipleTemplateInstances.index(multipleTemplateInstance) + 1));
+		});
+	}
+
+	function onLoad(){
+		var multipleTemplateInstances = $('.multipleTemplateInstance');
+
+		multipleTemplateInstances.each(function (key){
+			var multipleTemplateInstance = this;
+			var wfFormTutoStepInstructions = $('.WfFormTutoStepInstructions', multipleTemplateInstance).first();
+			wfFormTutoStepInstructions.prepend("<div class='step-number'> " + mw.msg('wfextstyle-form-step-label') + " " + (multipleTemplateInstances.index(multipleTemplateInstance) + 1) + "</div>");
+		});
+	}
+
+	function onNodeAdded($node){
+		var wfFormTutoStepInstructions = $('.WfFormTutoStepInstructions', $node).first();
+		var multipleTemplateInstances = $('.multipleTemplateInstance');
+		wfFormTutoStepInstructions.prepend("<div class='step-number'></div>");
+
+		refreshStepNumber();
+	}
+
+	function onNodeRemoved($node){
+		refreshStepNumber();
+	}
+
+	//see MutationObserver 
+	//https://developer.mozilla.org/fr/docs/Web/API/MutationObserver
+	function setObserver(){
+		//it is assumed that there's only one element with a multipleTemplateList class
+		var e = document.getElementsByClassName('multipleTemplate-tutostep')[0];
+		if(e){
+			var targetNode = e.getElementsByClassName('multipleTemplateList')[0];
+
+			if(targetNode){
+				//what we observe
+				var config = { childList: true };
+
+				var callback = function(mutationsList) {
+				    for(var mutation of mutationsList) {
+				        if (mutation.type == 'childList') {
+				        	//it is assumed that only one element is added at a time
+				        	if(mutation.addedNodes[0]){
+								onNodeAdded(mutation.addedNodes[0]);
+				        	}
+				        	if(mutation.removedNodes[0]){
+				        		onNodeRemoved(mutation.removedNodes[0]);
+				        	}
+				        }
+				    }
+				};
+
+				var observer = new MutationObserver(callback);
+
+				observer.observe(targetNode, config);
+			}
+		}
+	}
+
+	$( document ).ready(function() {
+		onLoad();
+		setObserver();
+	});
+
+})();
+
+// STEP NUMBER ON TUTORIALS FORM - END
 
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
   var $target = $(this).next(".collapse");
