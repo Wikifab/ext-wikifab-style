@@ -60,3 +60,12 @@ div.videofile .mp4-file{
 #pfForm .WfFormTutoStepInstructions .step-title-numeroted .createboxInput.form-step-title {
 	border-radius: 0 3px 3px 0;
 }
+
+.group-card {
+	text-align: center;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    padding-bottom: 10px;
+    overflow: hidden;
+}
