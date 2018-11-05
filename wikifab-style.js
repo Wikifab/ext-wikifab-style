@@ -35,7 +35,7 @@ $( document ).ready(function() {
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-    var backToTop = document.getElementById("backToTop");
+	var backToTop = document.getElementById("backToTop");
     if (backToTop){
     	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 	        backToTop.style.display = "block";
@@ -170,6 +170,76 @@ $(function() {
 		setObserver();
 	});
 
+})();
+
+(function () {
+
+	function onLoad(){
+		
+		var $dokitSosRadios = $('.multipleTemplate-dokitstep .multipleTemplateInstance .dokit-sos-radio');
+		$dokitSosRadios.each(function( index ) {
+		  var radios = $(this).find('input[name^=DokitPageStep]');
+		  var $checkedRadio = $(this).find('input[name^=DokitPageStep]:checked');
+		  var checkedRadioIndex = radios.index($checkedRadio);
+		  if ( checkedRadioIndex != 0 ) {
+		  	$( this ).hide();
+		  }
+		});
+	}
+
+	function onNodeAdded(node){
+
+		$dokitSosRadios = $('.dokit-sos-radio', node );
+		console.log($dokitSosRadios);
+		var $radios = $('.dokit-sos-radio input[name^=DokitPageStep]', node );
+		console.log($radios);
+		$radios.on('click', function () {
+			var $radios = $( this ).parents('.dokit-sos-radio').find('input[name^=DokitPageStep]');
+			var checkedRadioIndex = $radios.index($( this ));
+			if ( checkedRadioIndex != 0 ) {
+				$( this ).parents('.dokit-sos-radio').hide();
+			}
+		});
+	}
+
+	//see MutationObserver 
+	//https://developer.mozilla.org/fr/docs/Web/API/MutationObserver
+	function setObserver(){
+		//it is assumed that there's only one element with a multipleTemplateList class
+		var e = document.getElementsByClassName('multipleTemplate-dokitstep')[0];
+		if(e){
+			var targetNode = e.getElementsByClassName('multipleTemplateList')[0];
+
+			if(targetNode){
+				//what we observe
+				var config = { childList: true };
+
+				var callback = function(mutationsList) {
+				    for(var mutation of mutationsList) {
+				        if (mutation.type == 'childList') {
+				        	//it is assumed that only one element is added at a time
+				        	if(mutation.addedNodes[0]){
+				        		console.log("onNodeAdded");
+				        		console.log(mutation.addedNodes);
+								onNodeAdded(mutation.addedNodes[0]);
+				        	}
+				        }
+				    }
+				};
+
+				var observer = new MutationObserver(callback);
+
+				observer.observe(targetNode, config);
+			}
+		}
+	}
+
+	$( document ).ready(function() {
+		if ( $( '.multipleTemplate-dokitstep' ).length ) {
+			onLoad();
+			setObserver();
+		}
+	});
 })();
 
 // STEP NUMBER ON TUTORIALS FORM - END
