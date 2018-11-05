@@ -1,4 +1,3 @@
-
 /*
 $( document ).ready(function() {
     $(window).scroll(function(){
@@ -101,7 +100,7 @@ $(function() {
 (function() {
 
 	function refreshStepNumber(){
-		var multipleTemplateInstances = $('.multipleTemplateInstance');
+		var multipleTemplateInstances = $(".multipleTemplate-tutostep .multipleTemplateInstance");
 
 		multipleTemplateInstances.each(function (key){
 			var multipleTemplateInstance = this;
@@ -110,7 +109,7 @@ $(function() {
 	}
 
 	function onLoad(){
-		var multipleTemplateInstances = $('.multipleTemplateInstance');
+		var multipleTemplateInstances = $('.multipleTemplate-tutostep .multipleTemplateInstance');
 
 		multipleTemplateInstances.each(function (key){
 			var multipleTemplateInstance = this;
@@ -121,8 +120,10 @@ $(function() {
 
 	function onNodeAdded($node){
 		var wfFormTutoStepInstructions = $('.WfFormTutoStepInstructions', $node).first();
-		var multipleTemplateInstances = $('.multipleTemplateInstance');
-		wfFormTutoStepInstructions.prepend("<div class='step-number'></div>");
+		if ( !wfFormTutoStepInstructions.find('.step-number').length ) {
+		    // Do something
+		    wfFormTutoStepInstructions.prepend("<div class='step-number'></div>");
+		}
 
 		refreshStepNumber();
 	}
