@@ -174,3 +174,9 @@ h5.group-title span {
 .group-card a {
     text-decoration: none;
 }
+
+@media (max-width: 768px) {
+    .tabGroupsOptionButton {
+        display: none;
+    }
+}
