@@ -124,12 +124,20 @@ div.videofile .mp4-file{
     -webkit-transform: translateY(-50%) translateX(-50%);
 }
 
+h5.group-title {
+    font-size: 19px;
+    margin-top: 20px;
+    height: 20px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
 .group-thumbnail {
 	position: relative;
     width: 80px;
     height: 80px;
     margin: auto;
-    background: #fff;
+    background: #f9f9f9;
     margin-top: -40px;
     overflow: hidden;
     border-radius: 5px;
