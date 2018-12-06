@@ -102,7 +102,7 @@ div.videofile .mp4-file{
     transition-timing-function: ease-out;
     will-change: transform;
     margin-bottom: 30px;
-    padding: 10px 15px 10px 0px;
+    padding-bottom: 12px;
 }
 
 .group-card:hover {
@@ -125,11 +125,22 @@ div.videofile .mp4-file{
 }
 
 h5.group-title {
-    font-size: 19px;
-    margin-top: 20px;
-    height: 20px;
-    margin-bottom: 8px;
+font-size: 19px;
+    margin-top: 15px;
+    float: left;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+h5.group-title span {
+    text-overflow: ellipsis;
     overflow: hidden;
+    width: 100%;
+    /* line-height: 1; */
+    float: left;
+    white-space: nowrap;
+    vertical-align: baseline;
 }
 
 .group-thumbnail {
