@@ -178,21 +178,28 @@ $(function() {
 		
 		var $dokitSosRadios = $('.multipleTemplate-dokitstep .multipleTemplateInstance .dokit-sos-radio');
 		$dokitSosRadios.each(function( index ) {
-		  var radios = $(this).find('input[name^=DokitPageStep]');
-		  var $checkedRadio = $(this).find('input[name^=DokitPageStep]:checked');
-		  var checkedRadioIndex = radios.index($checkedRadio);
-		  if ( checkedRadioIndex != 0 ) {
-		  	$( this ).hide();
-		  }
+			var $radios = $(this).find('input[name^=DokitPageStep]');
+			$radios.on('click', function () {
+				var $radios = $( this ).parents('.dokit-sos-radio').find('input[name^=DokitPageStep]');
+				var checkedRadioIndex = $radios.index($( this ));
+				if ( checkedRadioIndex != 0 ) {
+					$( this ).parents('.dokit-sos-radio').hide();
+				}
+			});
+			var $checkedRadio = $(this).find('input[name^=DokitPageStep]:checked');
+			var checkedRadioIndex = $radios.index($checkedRadio);
+			if ( checkedRadioIndex != 0 ) {
+				$( this ).hide();
+			} else {
+
+			}
 		});
 	}
 
 	function onNodeAdded(node){
 
 		$dokitSosRadios = $('.dokit-sos-radio', node );
-		console.log($dokitSosRadios);
 		var $radios = $('.dokit-sos-radio input[name^=DokitPageStep]', node );
-		console.log($radios);
 		$radios.on('click', function () {
 			var $radios = $( this ).parents('.dokit-sos-radio').find('input[name^=DokitPageStep]');
 			var checkedRadioIndex = $radios.index($( this ));
@@ -219,8 +226,6 @@ $(function() {
 				        if (mutation.type == 'childList') {
 				        	//it is assumed that only one element is added at a time
 				        	if(mutation.addedNodes[0]){
-				        		console.log("onNodeAdded");
-				        		console.log(mutation.addedNodes);
 								onNodeAdded(mutation.addedNodes[0]);
 				        	}
 				        }
