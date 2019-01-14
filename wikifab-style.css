@@ -100,7 +100,7 @@ div.videofile .mp4-file{
     transition-duration: .2s;
     transition-timing-function: ease-out;
     will-change: transform;
-    margin-bottom: 30px;
+    margin: 15px 0;
 }
 
 .group-card:hover {
