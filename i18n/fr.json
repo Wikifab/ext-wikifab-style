@@ -4,5 +4,6 @@
 	},
 	"wfextstyle-desc": "customisation du style pour wikifab",
 	"wfextstyle-my_profil": "Mon Profil",
-	"wfextstyle-form-step-label": "Étape"
+	"wfextstyle-form-step-label": "Étape",
+	"wfextstyle-areyousure-alert": "On dirait que vous avez édité quelque chose. Si vous quittez avant d'enregistrer, vos modifications seront perdues."
 }

@@ -4,5 +4,6 @@
 	},
 	"wfextstyle-desc": "Style customization for wikifab",
 	"wfextstyle-my_profil": "My Profile",
-	"wfextstyle-form-step-label": "Step"
+	"wfextstyle-form-step-label": "Step",
+	"wfextstyle-areyousure-alert": "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 }

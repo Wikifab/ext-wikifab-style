@@ -24,6 +24,18 @@ $wgResourceModules['ext.Wikifab.css'] = array(
 	'remoteExtPath' => 'WfextStyle',
 );
 
+$wgResourceModules['ext.Wikifab.js.areyousure'] = array(
+	'scripts' => array(
+		'libs/AreYouSure/jquery.are-you-sure.js',
+		'resources/areyousure.js'
+	),
+	'localBasePath' => __DIR__,
+	'remoteExtPath' => 'WfextStyle',
+	'messages' => array(
+		'wfextstyle-areyousure-alert'
+	),
+);
+
 // Specify the function that will change the user menu.
 $wgHooks['PersonalUrls'][] = 'PersonalUrlsWikifabCustom';
 function PersonalUrlsWikifabCustom( &$personal_urls, &$title, $that  ) {
@@ -83,4 +95,11 @@ function onParserMakeImageParams( $title, $file, &$params, $parser ) {
 $wgHooks['BeforePageDisplay'][] = 'onBeforePageDisplay';
 function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		$out->addModuleStyles('ext.Wikifab.css');
+
+		$title = $out->getContext()->getTitle();
+
+		if ( $title->getNamespace() == NS_MANUAL || $title->getNamespace() == NS_SPECIAL && $title->getBaseText() == 'BookPage' ) {
+
+			$out->addModules('ext.Wikifab.js.areyousure');
+		}
 }
