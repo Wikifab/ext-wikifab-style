@@ -4,5 +4,6 @@
 	},
 	"wfextstyle-desc": "customisation du style pour wikifab",
 	"wfextstyle-my_profil": "Mon Profil",
-	"wfextstyle-form-step-label": "Étape"
+	"wfextstyle-form-step-label": "Étape",
+	"wfextstyle-page-already-exists": "Une page avec ce nom existe déjà. Veillez choisir un autre nom."
 }

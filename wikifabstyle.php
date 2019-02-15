@@ -6,7 +6,8 @@ $wgResourceModules['ext.Wikifab.js'] = array(
 	'scripts' => 'wikifab-style.js',
 	'styles' => array(),
 	'messages' => array(
-		'wfextstyle-form-step-label'
+		'wfextstyle-form-step-label',
+		'wfextstyle-page-already-exists'
 	),
 	'dependencies' => array(
 			'jquery.ui.core'

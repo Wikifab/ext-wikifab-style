@@ -252,4 +252,131 @@ $(function() {
 $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
   var $target = $(this).next(".collapse");
   $target.data('bs.collapse') ? $target.collapse('toggle') : $target.collapse();
-})
+});
+
+(function () {
+
+	var exists = null;
+
+	// #CreateNewPage popup
+	// check whether the page already exists! If so, then display an error message. Otherwise, redirect.
+
+	function pageExists(form, search, namespace) {
+
+		// fonction to do second request to execute follow action
+		function ajaxQuery(jsondata) {
+
+			var token = jsondata.query.tokens.csrftoken;
+
+			var data = {
+				action : 'query',
+				format : 'json',
+				list : 'search',
+				srsearch : search,
+				token : token
+			};
+
+			if (namespace != 'undefined') {
+				data.srnamespace = namespace;
+			}
+
+			$.ajax({
+				type : "POST",
+				url : mw.util.wikiScript('api'),
+				data : data,
+				dataType : 'json',
+				success : function(jsondata) {
+
+					if (jsondata.query.searchinfo.totalhits > 0) {
+						exists = true;
+					} else {
+						exists = false;
+					}
+
+					$(form).submit();
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log(textStatus);
+					console.log(jqXHR);
+					console.log(errorThrown);
+				}
+			});
+		}
+		;
+
+		// first request to get token
+		$.ajax({
+			type : "GET",
+			url : mw.util.wikiScript('api'),
+			data : {
+				action : 'query',
+				format : 'json',
+				meta : 'tokens',
+				type : 'csrf'
+			},
+			dataType : 'json',
+			success : ajaxQuery
+		});
+	}
+
+	var messages = {
+
+		clear : function() {
+			$('#CreateNewPage .alert').remove();
+		},
+		msg : function(e, txt) {
+
+			this.clear();
+
+			var message = document.createElement("div");
+
+			message.classList.add("alert");
+			message.classList.add("alert-danger");
+			message.innerHTML = txt;
+
+			$(e).prepend(message);
+		}
+	};
+
+	$('#CreateNewPage form').on('submit', function(e) {
+
+		if (exists === null) {
+
+			e.preventDefault(); //don't send the form yet
+
+			data = $(this).serializeArray();
+
+			var search = data.filter(obj => {
+			  return obj.name === "page_name"
+			});
+
+			var namespace = data.filter(obj => {
+			  return obj.name === "namespace"
+			});
+
+			search = search[0].value;
+
+			if (namespace != 'undefined' && namespace.length) {
+				namespace = mw.config.get( 'wgNamespaceIds' )[namespace[0].value.toLowerCase()];
+			} else {
+				namespace = false;
+			}
+			
+			namespace ? pageExists(this, search, namespace) : pageExists(this, search);
+		}
+
+		if (exists === true) {
+
+			e.preventDefault(); //don't send the form yet
+
+			messages.msg(this, mw.msg('wfextstyle-page-already-exists'));
+
+			exists = null;
+
+			$( this ).find('[name=page_name]').first().one( "click", function() {
+			  messages.clear();
+			});
+		}
+
+	});
+})();
