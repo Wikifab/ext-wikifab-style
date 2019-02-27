@@ -167,6 +167,8 @@ h5.group-title span {
     top: 0;
     left: 0;
     opacity: 0.4;
+    object-fit: cover;
+    height: -webkit-fill-available;
 }
 
 .group-card a {
