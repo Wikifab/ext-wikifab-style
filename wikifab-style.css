@@ -91,7 +91,7 @@ div.videofile .mp4-file{
 .group-card {
 	text-align: center;
     background: #fff;
-    border-radius: 3px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
     overflow: hidden;
     transition-property: -webkit-transform;
@@ -100,7 +100,7 @@ div.videofile .mp4-file{
     transition-duration: .2s;
     transition-timing-function: ease-out;
     will-change: transform;
-    margin: 15px 0;
+    margin: 0 0 15px 0;
 }
 
 .group-card:hover {
