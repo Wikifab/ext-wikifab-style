@@ -16,13 +16,14 @@ div.file-3D .stl-file{
 	background-position: 0 0;
 }
 
-div.videofile .mp4-file{
+div.videofile:before{
 	background-image: url(images/msu-play-verysmall.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	width: 100%;
 	height: 60px;
 	display: block;
+    content:'';
 	position: absolute;
 	padding: 5px;
 }	
