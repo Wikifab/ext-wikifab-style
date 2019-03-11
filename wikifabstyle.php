@@ -72,9 +72,6 @@ function onParserMakeImageParams( $title, $file, &$params, $parser ) {
 			case 'application/sla':
 				$params['frame']['class'] = 'file-3D';
 				break;
-			case 'video/mp4':
-				$params['frame']['class'] = 'videofile';
-				break;
 		}
 	}
 	return true;
