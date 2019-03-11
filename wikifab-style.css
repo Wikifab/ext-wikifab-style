@@ -34,8 +34,35 @@ div.file-3D .stl-file{
 	padding: 5px;
 }	
 
-.page-Manuals form.wfExplore {
+.page-Manuals .explore-layout-group .WFfilter-property {
 	display: none;
+}
+
+.page-Manuals .explore-layout-group .WFfilter-filters {
+    float: left;
+}
+
+.page-Manuals .explore-layout-group .WFfilter .WFfilter-filters ul.mega-dropdown-menu {
+    right:auto;
+    min-width: 190px;
+}
+
+.page-Manuals .explore-layout-group .search-section {
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.page-Manuals .explore-layout-group .search-filters-section.wfexplore-proposedTags,
+.page-Manuals .explore-layout-group .search-filters-section {
+    display:none;
+}
+
+.page-Manuals .explore-layout-group #sort-filters,
+.page-Manuals .explore-layout-group #sort-filters + hr,
+.page-Manuals .explore-layout-group #search-by-author,
+.page-Manuals .explore-layout-group #search-by-author + hr {
+ display: none;
 }
 
 .carousel-thumb .stl-file{
