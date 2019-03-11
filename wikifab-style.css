@@ -58,6 +58,14 @@ div.file-3D .stl-file{
     display:none;
 }
 
+.page-Manuals .explore-layout-group .WFfilter-filters a {
+    background: #fff;
+}
+
+.page-Manuals .explore-layout-group .WFfilter-filters a:hover {
+    background: #e5e9f2;
+}
+
 .page-Manuals .explore-layout-group #sort-filters,
 .page-Manuals .explore-layout-group #sort-filters + hr,
 .page-Manuals .explore-layout-group #search-by-author,
