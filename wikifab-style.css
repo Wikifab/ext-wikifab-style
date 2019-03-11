@@ -107,7 +107,7 @@ div.file-3D .stl-file{
     transition-duration: .2s;
     transition-timing-function: ease-out;
     will-change: transform;
-    margin: 0 0 15px 0;
+    margin: 0 0 25px 0;
 }
 
 .group-card:hover {
