@@ -188,6 +188,7 @@ h5.group-title span {
     margin-top: -40px;
     overflow: hidden;
     border-radius: 5px;
+    text-align: left;
     box-shadow: 0 0px 10px rgba(0,0,0,0.25);
 }
 
