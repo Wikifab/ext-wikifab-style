@@ -158,6 +158,7 @@ div.file-3D .stl-file{
     width: 80px;
     height: 80px;
     object-position: center;
+    float: left;
 }
 
 h5.group-title {
