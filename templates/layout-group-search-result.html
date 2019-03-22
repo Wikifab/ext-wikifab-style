@@ -1,4 +1,18 @@
 <div class="col-md-4 col-sm-6 col-xs-12">
-	<a href="{{url}}"><div class="group-card"><div class="group-thumbnail-banner"><img src="{{group-banner::url}}"/></div><div class="group-thumbnail"><img src="{{group-logo::url}}"  alt="{{title}}"/></div><h5 class="group-title"><span class="mw-headline">{{title}}</span>
-</h5></div></a>
+	<a href="{{url}}">
+		<div class="group-card">
+			<div class="group-thumbnail-banner">
+				<img src="{{group-banner::url}}"/>
+				<div class="project-card-lang-code lang-{{codeLang}}">
+					{{codeLang}}
+				</div>
+			</div>
+			<div class="group-thumbnail">
+				<img src="{{group-logo::url}}"  alt="{{title}}"/>
+			</div>
+			<h5 class="group-title">
+				<span class="mw-headline">{{title}}</span>
+			</h5>
+		</div>
+	</a>
 </div>
