@@ -100,8 +100,6 @@ function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 
 		if ( $title->getNamespace() == NS_MANUAL || $title->getNamespace() == NS_SPECIAL && $title->getBaseText() == 'BookPage' ) {
 
-			var_dump("are you sure");
-
 			$out->addModules('ext.Wikifab.js.areyousure');
 		}
 }
