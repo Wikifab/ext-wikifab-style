@@ -26,7 +26,7 @@ $wgResourceModules['ext.Wikifab.css'] = array(
 
 $wgResourceModules['ext.Wikifab.js.areyousure'] = array(
 	'scripts' => array(
-		'libs/AreYouSure/jquery.are-you-sure.js',
+		'libs/AreYouSure_altered/jquery.are-you-sure.js',
 		'resources/areyousure.js'
 	),
 	'localBasePath' => __DIR__,
@@ -99,6 +99,8 @@ function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		$title = $out->getContext()->getTitle();
 
 		if ( $title->getNamespace() == NS_MANUAL || $title->getNamespace() == NS_SPECIAL && $title->getBaseText() == 'BookPage' ) {
+
+			var_dump("are you sure");
 
 			$out->addModules('ext.Wikifab.js.areyousure');
 		}

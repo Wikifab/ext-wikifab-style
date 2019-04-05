@@ -13,6 +13,37 @@
 (function($) {
   
   $.fn.areYouSure = function(options) {
+
+    if (options.setDirtyOnDOMChange) {
+
+      var form = $(this).get(0);
+
+      (function () {
+        // Observe dom change for this form
+        var targetNode = form;
+        var $targetNode = $(targetNode);
+
+        // Options for the observer (which mutations to observe)
+        var config = { childList: true, subtree: true };
+
+        // Callback function to execute when mutations are observed
+        var callback = function(mutationsList, observer) {
+            for(var mutation of mutationsList) {
+
+                if (mutation.type == 'childList') {
+                  // if node added, add dirty class to the form
+                  setDirtyStatus($targetNode, true);
+                }
+            }
+        };
+
+        // Create an observer instance linked to the callback function
+        var observer = new MutationObserver(callback);
+
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
+      })();
+    }
       
     var settings = $.extend(
       {
@@ -65,7 +96,7 @@
     };
 
     var storeOrigValue = function($field) {
-      $field.data('ays-orig', getValue($field));
+      $field.data('ays-orig', $field.val());
     };
 
     var checkForm = function(evt) {
@@ -115,8 +146,8 @@
     var initForm = function($form) {
       var fields = $form.find(settings.fieldSelector);
       $(fields).each(function() { storeOrigValue($(this)); });
-      $(fields).unbind(settings.fieldEvents, checkForm);
-      $(fields).bind(settings.fieldEvents, checkForm);
+      $form.off(settings.fieldEvents, settings.fieldSelector, checkForm);
+      $form.on(settings.fieldEvents, settings.fieldSelector, checkForm);
       $form.data("ays-orig-field-count", $(fields).length);
       setDirtyStatus($form, false);
     };

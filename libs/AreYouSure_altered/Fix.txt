@@ -1,0 +1,5 @@
+Julien - 05 04 2019
+
+- In the function named storeOrigValue, changed getValue() to $.val() 
+- Added a parameter setDirtyOnDOMChange : will add a 'dirty' class to the form on DOM change
+- changed bind to on at certain places to take attach events on new elements
