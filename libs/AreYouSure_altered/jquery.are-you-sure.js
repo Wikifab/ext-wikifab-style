@@ -13,37 +13,6 @@
 (function($) {
   
   $.fn.areYouSure = function(options) {
-
-    if (options.setDirtyOnDOMChange) {
-
-      var form = $(this).get(0);
-
-      (function () {
-        // Observe dom change for this form
-        var targetNode = form;
-        var $targetNode = $(targetNode);
-
-        // Options for the observer (which mutations to observe)
-        var config = { childList: true, subtree: true };
-
-        // Callback function to execute when mutations are observed
-        var callback = function(mutationsList, observer) {
-            for(var mutation of mutationsList) {
-
-                if (mutation.type == 'childList') {
-                  // if node added, add dirty class to the form
-                  setDirtyStatus($targetNode, true);
-                }
-            }
-        };
-
-        // Create an observer instance linked to the callback function
-        var observer = new MutationObserver(callback);
-
-        // Start observing the target node for configured mutations
-        observer.observe(targetNode, config);
-      })();
-    }
       
     var settings = $.extend(
       {
@@ -150,6 +119,37 @@
       $form.on(settings.fieldEvents, settings.fieldSelector, checkForm);
       $form.data("ays-orig-field-count", $(fields).length);
       setDirtyStatus($form, false);
+
+      if (settings.setDirtyOnDOMChange) {
+
+        var form = $form.get(0);
+
+        (function () {
+          // Observe dom change for this form
+          var targetNode = form;
+          var $targetNode = $(targetNode);
+
+          // Options for the observer (which mutations to observe)
+          var config = { childList: true, subtree: true };
+
+          // Callback function to execute when mutations are observed
+          var callback = function(mutationsList, observer) {
+              for(var mutation of mutationsList) {
+
+                  if (mutation.type == 'childList') {
+                    // if node added, add dirty class to the form
+                    setDirtyStatus($targetNode, true);
+                  }
+              }
+          };
+
+          // Create an observer instance linked to the callback function
+          var observer = new MutationObserver(callback);
+
+          // Start observing the target node for configured mutations
+          observer.observe(targetNode, config);
+        })();
+      }
     };
 
     var setDirtyStatus = function($form, isDirty) {
