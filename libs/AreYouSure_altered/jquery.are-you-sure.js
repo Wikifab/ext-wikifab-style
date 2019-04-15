@@ -65,7 +65,7 @@
     };
 
     var storeOrigValue = function($field) {
-      $field.data('ays-orig', $field.val());
+      $field.data('ays-orig', getValue($field));
     };
 
     var checkForm = function(evt) {
