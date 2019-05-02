@@ -271,6 +271,7 @@ $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', func
 				action : 'query',
 				format : 'json',
 				list : 'search',
+				srwhat: 'nearmatch',
 				srsearch : search,
 				token : token
 			};
@@ -286,7 +287,7 @@ $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', func
 				dataType : 'json',
 				success : function(jsondata) {
 
-					if (jsondata.query.searchinfo.totalhits > 0) {
+					if (jsondata.query.search.length > 0) {
 						exists = true;
 					} else {
 						exists = false;
