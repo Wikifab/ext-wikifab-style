@@ -267,17 +267,27 @@ $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', func
 
 			var token = jsondata.query.tokens.csrftoken;
 
-			var data = {
-				action : 'query',
-				format : 'json',
-				list : 'search',
-				srwhat: 'nearmatch',
-				srsearch : search,
-				token : token
-			};
-
-			if (namespace != 'undefined') {
-				data.srnamespace = namespace;
+			var data = {};
+			if(namespace !== undefined){
+				var title = mw.config.get( 'wgFormattedNamespaces' )[namespace] + ':' + search;
+				data = {
+					action : 'query',
+					format : 'json',
+					list : 'search',
+					srwhat: 'nearmatch',
+					srsearch : title,
+					srnamespace : namespace,
+					token : token
+				};
+			} else {
+				data = {
+					action : 'query',
+					format : 'json',
+					list : 'search',
+					srwhat: 'nearmatch',
+					srsearch : search,
+					token : token
+				};
 			}
 
 			$.ajax({
