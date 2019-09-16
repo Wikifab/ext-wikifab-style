@@ -28,6 +28,22 @@ $( document ).ready(function() {
 	$('video').wrap("<div class='videofile'></div>");
 });
 
+
+// Open any links (internal or external) between <span class=".newwin"></span> in new tab
+
+/**
+ * @source https://www.mediawiki.org/wiki/Snippets/Open_specific_links_in_new_window
+ * @version 2018-09-15
+ */
+$( function () {
+	$( '#mw-content-text' ).on( 'click', '.newwin > a', function () {
+		var otherWindow = window.open();
+		otherWindow.opener = null;
+		otherWindow.location = this;
+		return false;
+	} );
+} );
+
 // BACK TO TOP
 
 // When the user scrolls down 20px from the top of the document, show the button
