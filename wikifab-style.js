@@ -1,7 +1,7 @@
 /*
 $( document ).ready(function() {
     $(window).scroll(function(){
-		// en haut : 
+		// en haut :
 	    //$("#saving-menu").css("top",Math.max(0,250-$(this).scrollTop()));
 
 		$originalPosition = Math.floor($('.footer-main').position().top - $(this).scrollTop());
@@ -62,9 +62,9 @@ function scrollFunction() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-	$('body, html').stop().animate({scrollTop:0}, 500, 'swing', function() { 
+	$('body, html').stop().animate({scrollTop:0}, 500, 'swing', function() {
 	});
-} 
+}
 
 // BACK TO TOP - END
 
@@ -107,7 +107,7 @@ $(function() {
 		$( "#connectionRequiredModal" ).modal();
 	}
 })();
-	
+
 // LOGIN POPUP ON CLICK ON EDIT BUTTON - END
 
 // STEP NUMBER ON TUTORIALS FORM
@@ -147,7 +147,7 @@ $(function() {
 		refreshStepNumber();
 	}
 
-	//see MutationObserver 
+	//see MutationObserver
 	//https://developer.mozilla.org/fr/docs/Web/API/MutationObserver
 	function setObserver(){
 		//it is assumed that there's only one element with a multipleTemplateList class
@@ -160,8 +160,8 @@ $(function() {
 				var config = { childList: true };
 
 				var callback = function(mutationsList) {
-				    for(var mutation of mutationsList) {
-				        if (mutation.type == 'childList') {
+					mutationsList.forEach(function (mutation) {
+						if (mutation.type == 'childList') {
 				        	//it is assumed that only one element is added at a time
 				        	if(mutation.addedNodes[0]){
 								onNodeAdded(mutation.addedNodes[0]);
@@ -170,7 +170,7 @@ $(function() {
 				        		onNodeRemoved(mutation.removedNodes[0]);
 				        	}
 				        }
-				    }
+					});
 				};
 
 				var observer = new MutationObserver(callback);
@@ -190,7 +190,7 @@ $(function() {
 (function () {
 
 	function onLoad(){
-		
+
 		var $dokitSosRadios = $('.multipleTemplate-dokitstep .multipleTemplateInstance .dokit-sos-radio');
 		$dokitSosRadios.each(function( index ) {
 			var $radios = $(this).find('input[name^=DokitPageStep]');
@@ -224,7 +224,7 @@ $(function() {
 		});
 	}
 
-	//see MutationObserver 
+	//see MutationObserver
 	//https://developer.mozilla.org/fr/docs/Web/API/MutationObserver
 	function setObserver(){
 		//it is assumed that there's only one element with a multipleTemplateList class
@@ -237,14 +237,14 @@ $(function() {
 				var config = { childList: true };
 
 				var callback = function(mutationsList) {
-				    for(var mutation of mutationsList) {
-				        if (mutation.type == 'childList') {
+					mutationsList.forEach(function(mutation) {
+						if (mutation.type == 'childList') {
 				        	//it is assumed that only one element is added at a time
 				        	if(mutation.addedNodes[0]){
 								onNodeAdded(mutation.addedNodes[0]);
 				        	}
 				        }
-				    }
+					});
 				};
 
 				var observer = new MutationObserver(callback);
@@ -387,7 +387,7 @@ $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', func
 			} else {
 				namespace = false;
 			}
-			
+
 			namespace ? pageExists(this, search, namespace) : pageExists(this, search);
 		}
 
