@@ -372,11 +372,11 @@ $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', func
 
 			data = $(this).serializeArray();
 
-			var search = data.filter(obj => {
+			var search = data.filter(function(obj) {
 			  return obj.name === "page_name"
 			});
 
-			var namespace = data.filter(obj => {
+			var namespace = data.filter(function(obj) {
 			  return obj.name === "namespace"
 			});
 
