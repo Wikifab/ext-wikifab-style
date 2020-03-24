@@ -34,42 +34,54 @@ div.file-3D .stl-file{
 	padding: 5px;
 }	
 
-.page-Manuals .explore-layout-group .WFfilter-property {
+.page-Manuals .explore-layout-group .WFfilter-property,
+.page-Paths .explore-layout-group .WFfilter-property {
 	display: none;
 }
 
-.page-Manuals .explore-layout-group .WFfilter-filters {
+.page-Manuals .explore-layout-group .WFfilter-filters,
+.page-Paths .explore-layout-group .WFfilter-filters {
     float: left;
 }
 
-.page-Manuals .explore-layout-group .WFfilter .WFfilter-filters ul.mega-dropdown-menu {
+.page-Manuals .explore-layout-group .WFfilter .WFfilter-filters ul.mega-dropdown-menu,
+.page-Paths .explore-layout-group .WFfilter .WFfilter-filters ul.mega-dropdown-menu {
     right:auto;
     min-width: 210px;
 }
 
-.page-Manuals .explore-layout-group .search-section {
+.page-Manuals .explore-layout-group .search-section,
+.page-Paths .explore-layout-group .search-section {
     padding: 0;
     box-shadow: none;
     background-color: transparent;
 }
 
 .page-Manuals .explore-layout-group .search-filters-section.wfexplore-proposedTags,
-.page-Manuals .explore-layout-group .search-filters-section {
+.page-Manuals .explore-layout-group .search-filters-section,
+.page-Paths .explore-layout-group .search-filters-section.wfexplore-proposedTags,
+.page-Paths .explore-layout-group .search-filters-section {
     display:none;
 }
 
-.page-Manuals .explore-layout-group .WFfilter-filters a {
+.page-Manuals .explore-layout-group .WFfilter-filters a,
+.page-Paths .explore-layout-group .WFfilter-filters a {
     background: #fff;
 }
 
-.page-Manuals .explore-layout-group .WFfilter-filters a:hover {
+.page-Manuals .explore-layout-group .WFfilter-filters a:hover,
+.page-Paths .explore-layout-group .WFfilter-filters a:hover {
     background: #e5e9f2;
 }
 
 .page-Manuals .explore-layout-group #sort-filters,
 .page-Manuals .explore-layout-group #sort-filters + hr,
 .page-Manuals .explore-layout-group #search-by-author,
-.page-Manuals .explore-layout-group #search-by-author + hr {
+.page-Manuals .explore-layout-group #search-by-author + hr,
+.page-Paths .explore-layout-group #sort-filters,
+.page-Paths .explore-layout-group #sort-filters + hr,
+.page-Paths .explore-layout-group #search-by-author,
+.page-Paths .explore-layout-group #search-by-author + hr {
  display: none;
 }
 
